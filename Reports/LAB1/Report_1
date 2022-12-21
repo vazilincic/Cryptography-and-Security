@@ -1,0 +1,128 @@
+#+TITLE: CRYPTOGRAPHY AND SECURITY LABORATORY WORK 1
+#+AUTHOR: FCIM FAF 201 Ceban Vasile
+#+OPTIONS: toc:2
+
+
+** TABLE OF CONTENTS :toc:
+- [[#intro-to-cryptography-classical-ciphers-caesar-cipher][INTRO TO CRYPTOGRAPHY. CLASSICAL CIPHERS. CAESAR CIPHER.]]
+  - [[#how-to-use][HOW TO USE]]
+  - [[#theory][THEORY]]
+  - [[#objectives][OBJECTIVES]]
+  - [[#implementation][IMPLEMENTATION]]
+  - [[#conclusion--results][CONCLUSION / RESULTS]]
+
+* INTRO TO CRYPTOGRAPHY. CLASSICAL CIPHERS. CAESAR CIPHER.
+
+** HOW TO USE
+
+#+begin_src python
+from cs.ciphers.caesar.*AlgName* import *AlgName*
+#+end_src
+
+Example:
+
+#+begin_src python
+from cs.ciphers.caesar.CaesarCipher import CaesarCipher
+
+text = 'cryprographyandsecurity'
+key = 'fcim'
+
+CC = CaesarCipher(shift=13)
+caesar_cipher = CC.encrypt(text)
+
+print(caesar_cipher)
+#+end_src
+
+** THEORY
+
+*** What is Cryptography?
+
+The study of mathematical techniques for securing digital information, systems, and distributed computations against adversarial attacks.
+
+** OBJECTIVES
+
+- Get familiar with the basics of cryptography and classical ciphers.
+- Implement 4 types od the classical ciphers:
+  - Caesar cipher with one key used for substitution (as explained above),
+  - Caesar cipher with one key used for substitution, and a permutation of the alphabet,
+  - Vigenere cipher,
+  - Playfair cipher.
+- Structure the project in methods/classes/packages as neeeded.
+
+** IMPLEMENTATION
+
+*** CAESAR CIPHER
+
+The Caesar Cipher technique is one of the earliest and simplest methods of encryption technique. It’s simply a type of substitution cipher, i.e., each letter of a given text is replaced by a letter with a fixed number of positions down the alphabet. For example with a shift of 1, A would be replaced by B, B would become C, and so on. The method is apparently named after Julius Caesar, who apparently used it to communicate with his officials.
+
+Algorithm for Caesar Cipher:
+
+1. Traverse the given text one character at a time .
+2. For each character, transform the given character as per the rule, depending on whether we’re encrypting or decrypting the text.
+3. Return the new string generated.
+
+Example:
+
+#+begin_example
+Text : ABCDEFGHIJKLMNOPQRSTUVWXYZ
+Shift: 23
+Cipher: XYZABCDEFGHIJKLMNOPQRSTUVW
+
+Text : ATTACKATONCE
+Shift: 4
+Cipher: EXXEGOEXSRGI
+#+end_example
+
+#+include: "./ciphers/CaesarCipher.py"
+
+*** VIGENERE CIPHER
+
+Vigenere Cipher is a method of encrypting alphabetic text. It uses a simple form of polyalphabetic substitution. A polyalphabetic cipher is any cipher based on substitution, using multiple substitution alphabets. The encryption of the original text is done using the Vigenère square or Vigenère table.
+
+- The table consists of the alphabets written out 26 times in different rows, each alphabet shifted cyclically to the left compared to the previous alphabet, corresponding to the 26 possible Caesar Ciphers.
+- At different points in the encryption process, the cipher uses a different alphabet from one of the rows.
+- The alphabet used at each point depends on a repeating keyword.
+
+Example:
+
+#+begin_example
+Plaintext :   GEEKSFORGEEKS
+Keyword   :   AYUSH
+
+Ciphertext :  GCYCZFMLYLEIM
+#+end_example
+
+The first letter of the plaintext, G is paired with A, the first letter of the key. So use row G and column A of the Vigenère square, namely G. Similarly, for the second letter of the plaintext, the second letter of the key is used, the letter at row E, and column Y is C. The rest of the plaintext is enciphered in a similar fashion.
+
+
+*** PLAYFAIR CIPHER
+
+=The Playfair Cipher= was the first practical digraph substitution cipher. The scheme was invented in 1854 by Charles Wheatstone but was named after Lord Playfair who promoted the use of the cipher. In playfair cipher unlike traditional cipher we encrypt a pair of alphabets(digraphs) instead of a single alphabet.
+
+The Algorithm consists of 2 steps:
+
+1. Generate the key Square(5×5):
+    - The key square is a 5×5 grid of alphabets that acts as the key for encrypting the plaintext. Each of the 25 alphabets must be unique and one letter of the alphabet (usually J) is omitted from the table (as the table can hold only 25 alphabets). If the plaintext contains J, then it is replaced by I.
+    - The initial alphabets in the key square are the unique alphabets of the key in the order in which they appear followed by the remaining letters of the alphabet in order.
+2. Algorithm to encrypt the plain text: The plaintext is split into pairs of two letters (digraphs). If there is an odd number of letters, a Z is added to the last letter.
+
+For example:
+
+#+begin_example
+PlainText: "instruments"
+After Split: 'in' 'st' 'ru' 'me' 'nt' 'sz'
+#+end_example
+
+** CONCLUSION / RESULTS
+
+#+begin_example
+Original Text: cryprographyandsecurity
+Caesar Cipher: pelcebtenculnaqfrphevgl
+-----------------------------
+Original Text: cryprographyandsecurity
+Playfair Cipher: atzotmmwdmixbmbuifqsoyzv      
+-----------------------------
+Original Text: cryprographyandsecurity
+Vigenere Cipher: TDPGDFXDRGTPRZUJQTLDZKK       
+-----------------------------
+#+end_example
