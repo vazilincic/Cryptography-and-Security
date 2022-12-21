@@ -1,0 +1,134 @@
+#+TITLE: CRYPTOGRAPHY AND SECURITY LABORATORY WORK 2
+#+AUTHOR: FCIM FAF 201 Ceban Vasile
+#+OPTIONS: toc:2
+
+** TABLE OF CONTENTS :toc:
+  - [[#how-to-use][HOW TO USE]]
+  - [[#theory][THEORY]]
+  - [[#objectives][OBJECTIVES]]
+  - [[#implementation][IMPLEMENTATION]]
+  - [[#conclusion--results][CONCLUSION / RESULTS]]
+
+** HOW TO USE
+
+Download the =cs= folder.
+
+=NOTE!= The current work is written in Ruby.
+
+
+Import the libs:
+
+#+begin_src ruby
+require_relative 'cs/ciphers/block/des'
+require_relative 'cs/ciphers/stream/rc4'
+#+end_src
+
+Define the key and text:
+
+#+begin_src ruby
+key = "fcim faf"
+text = "software-engineer"
+#+end_src
+
+Create the instances:
+
+#+begin_src ruby
+rc4_enc = RC4.new(key)
+encrypted = rc4_enc.encrypt(text)
+#+end_src
+
+** THEORY
+
+Symmetric Cryptography deals with the encryption of plain text when having only one encryption key which needs to remain private. Based on the way the plain text is processed/encrypted there are 2 types of ciphers:
+
+1. Stream ciphers:
+    - The encryption is done one byte at a time.
+    - Stream ciphers use confusion to hide the plain text.
+    - Make use of substitution techniques to modify the plain text.
+    - The implementation is fairly complex.
+    - The execution is fast.
+2. Block ciphers:
+    - The encryption is done one block of plain text at a time.
+    - Block ciphers use confusion and diffusion to hide the plain text.
+    - Make use of transposition techniques to modify the plain text.
+    - The implementation is simpler relative to the stream ciphers.
+    - The execution is slow compared to the stream ciphers.
+
+** OBJECTIVES
+
+- Get familiar with the symmetric cryptography, stream and block ciphers.
+- Implement an example of a stream cipher.
+- Implement an example of a block cipher.
+- The implementation should, ideally follow the abstraction/contract/interface used in the previous laboratory work.
+- Please use packages/directories to logically split the files that you will have.
+- As in the previous task, please use a client class or test classes to showcase the execution of your programs.
+
+** IMPLEMENTATION
+
+*** STREAM CIPHER
+
+In stream cipher, one byte is encrypted at a time while in block cipher ~128 bits are encrypted at a time.
+
+Initially, a =key(k)= will be supplied as input to pseudorandom bit generator and then it produces a random 8-bit output which is treated as keystream.
+
+The resulted keystream will be of size 1 byte, i.e., 8 bits.
+
+**** ENCRYPTION
+
+1. Plain Text and Keystream produces Cipher Text (Same keystream will be used for decryption.).
+2. The Plaintext will undergo XOR operation with keystream bit-by-bit and produces the Cipher Text.
+
+Example:
+
+#+begin_example
+Plain Text : 10011001
+Keystream  : 11000011
+`````````````````````
+Cipher Text : 01011010
+#+end_example
+
+*** RC4
+
+=RC4= is a stream cipher and variable-length key algorithm. This algorithm encrypts one byte at a time (or larger units at a time).
+
+A key input is pseudorandom bit generator that produces a stream 8-bit number that is unpredictable without knowledge of input key, The output of the generator is called key-stream, is combined one byte at a time with the plaintext stream cipher using X-OR operation.
+
+#+begin_example
+RC4 Encryption
+10011000 ? 01010000 = 11001000
+
+RC4 Decryption
+11001000 ? 01010000 = 10011000
+#+end_example
+
+*** DES
+
+Data encryption standard (DES) has been found vulnerable to very powerful attacks and therefore, the popularity of DES has been found slightly on the decline. DES is a block cipher and encrypts data in blocks of size of 64 bits each, which means 64 bits of plain text go as the input to DES, which produces 64 bits of ciphertext. The same algorithm and key are used for encryption and decryption, with minor differences. The key length is 56 bits.
+
+** CONCLUSION / RESULTS
+
+#+begin_example
+Encryption:
+
+After initial permutation: 14A7D67818CA18AD
+After splitting: L0=14A7D678 R0=18CA18AD
+
+Round 1 18CA18AD 5A78E394 194CD072DE8C
+Round 2 5A78E394 4A1210F6 4568581ABCCE
+Round 3 4A1210F6 B8089591 06EDA4ACF5B5
+Round 4 B8089591 236779C2 DA2D032B6EE3
+Round 5 236779C2 A15A4B87 69A629FEC913
+Round 6 A15A4B87 2E8F9C65 C1948E87475E
+Round 7 2E8F9C65 A9FC20A3 708AD2DDB3C0
+Round 8 A9FC20A3 308BEE97 34F822F0C66D
+Round 9 308BEE97 10AF9D37 84BB4473DCCC
+Round 10 10AF9D37 6CA6CB20 02765708B5BF
+Round 11 6CA6CB20 FF3C485F 6D5560AF7CA5
+Round 12 FF3C485F 22A5963B C2C1E96A4BF3
+Round 13 22A5963B 387CCDAA 99C31397C91F
+Round 14 387CCDAA BD2DD2AB 251B8BC717D0
+Round 15 BD2DD2AB CF26B472 3330C5D9A36D
+Round 16 19BA9212 CF26B472 181C5D75C66D
+
+Cipher Text: C0B7A8D05F3A829C
+#+end_example
