@@ -11,10 +11,6 @@
 
 Clone the current repository.
 
-```bash
-$ git clone https://github.com/IuraCPersonal/cs
-```
-
 Inside the current folder run:
 
 ```bash
