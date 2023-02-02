@@ -44,9 +44,9 @@ Algorithm for Caesar Cipher:
 Example:
 
 #+begin_example
-Text : ABCDEFGHIJKLMNOPQRSTUVWXYZ
-Shift: 23
-Cipher: XYZABCDEFGHIJKLMNOPQRSTUVW
+Text : vazilincic
+Shift: 2
+Cipher: xcbknkpeke 
 
 Text : ATTACKATONCE
 Shift: 4
