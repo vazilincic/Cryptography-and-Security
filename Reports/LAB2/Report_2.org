@@ -3,39 +3,11 @@
 #+OPTIONS: toc:2
 
 ** TABLE OF CONTENTS :toc:
-  - [[#how-to-use][HOW TO USE]]
   - [[#theory][THEORY]]
   - [[#objectives][OBJECTIVES]]
   - [[#implementation][IMPLEMENTATION]]
   - [[#conclusion--results][CONCLUSION / RESULTS]]
 
-** HOW TO USE
-
-Download the =cs= folder.
-
-=NOTE!= The current work is written in Ruby.
-
-
-Import the libs:
-
-#+begin_src ruby
-require_relative 'cs/ciphers/block/des'
-require_relative 'cs/ciphers/stream/rc4'
-#+end_src
-
-Define the key and text:
-
-#+begin_src ruby
-key = "fcim faf"
-text = "software-engineer"
-#+end_src
-
-Create the instances:
-
-#+begin_src ruby
-rc4_enc = RC4.new(key)
-encrypted = rc4_enc.encrypt(text)
-#+end_src
 
 ** THEORY
 
