@@ -37,5 +37,10 @@ string originalText(string cipher_text, string key)
 }
 int main()
 {
+    string str,keyword;
+    cin>>str;
+    cin>>keyword;
+    string key=generateKey(str, keyword),cipher_text=cipherText(str, key);
+    cout<<cipher_text;
     return 0;
 }
