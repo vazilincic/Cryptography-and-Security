@@ -24,5 +24,10 @@ string decrypt(string text, int s)
 }
 int main()
 {
+string text;
+    int shift;
+    cin>>text;
+    cin>>shift;
+    cout<< encrypt(text,shift);
   return 0;
 }
