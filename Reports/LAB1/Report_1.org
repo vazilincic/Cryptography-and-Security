@@ -47,13 +47,7 @@ Example:
 Text : vazilincic
 Shift: 2
 Cipher: xcbknkpeke 
-
-Text : ATTACKATONCE
-Shift: 4
-Cipher: EXXEGOEXSRGI
 #+end_example
-
-#+include: "./ciphers/CaesarCipher.py"
 
 *** VIGENERE CIPHER
 
