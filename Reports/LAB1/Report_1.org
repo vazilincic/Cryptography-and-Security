@@ -5,7 +5,6 @@
 
 ** TABLE OF CONTENTS :toc:
 - [[#intro-to-cryptography-classical-ciphers-caesar-cipher][INTRO TO CRYPTOGRAPHY. CLASSICAL CIPHERS. CAESAR CIPHER.]]
-  - [[#how-to-use][HOW TO USE]]
   - [[#theory][THEORY]]
   - [[#objectives][OBJECTIVES]]
   - [[#implementation][IMPLEMENTATION]]
@@ -13,25 +12,6 @@
 
 * INTRO TO CRYPTOGRAPHY. CLASSICAL CIPHERS. CAESAR CIPHER.
 
-** HOW TO USE
-
-#+begin_src python
-from cs.ciphers.caesar.*AlgName* import *AlgName*
-#+end_src
-
-Example:
-
-#+begin_src python
-from cs.ciphers.caesar.CaesarCipher import CaesarCipher
-
-text = 'cryprographyandsecurity'
-key = 'fcim'
-
-CC = CaesarCipher(shift=13)
-caesar_cipher = CC.encrypt(text)
-
-print(caesar_cipher)
-#+end_src
 
 ** THEORY
 
